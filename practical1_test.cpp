@@ -6,10 +6,10 @@
 */
 
 // Use this definition to have catch provide a main method
-//#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_MAIN
 
 // Use this definition when providing your own main method
-#define CATCH_CONFIG_RUNNER
+//#define CATCH_CONFIG_RUNNER
 
 #include "catch.hpp"
 
@@ -124,7 +124,7 @@ TEST_CASE("Account Axioms", "[Account]")
 			same = false;
 		}
 
-		// assert overdraft unchanged
+		// assert two objects are not the same
 		REQUIRE(same == false);
 	}
 
@@ -139,39 +139,43 @@ TEST_CASE("Account Axioms", "[Account]")
 			same = false;
 		}
 
-		// assert overdraft unchanged
+		// assert two objects are the same
 		REQUIRE(same == true);
 	}
 
 
-	//SECTION("Attempt to see if object a is less than b")
-	//{
-	//	// act
-	//	bool same{ false };
-	//	if (a == b) {
-	//		same = true;
-	//	}
-	//	else {
-	//		same = false;
-	//	}
+	SECTION("Attempt to see if object a is less than b")
+	{
+		// act
+		a.deposit(500);
+		b.deposit(600);
+		bool same{ false };
+		if (a < b) {
+			same = true;
+		}
+		else {
+			same = false;
+		}
 
-	//	// assert overdraft unchanged
-	//	REQUIRE(same == false);
-	//}
+		// assert a is less than b
+		REQUIRE(same == true);
+	}
 
-	//SECTION("Attempt to see if object b is less than b")
-	//{
-	//	// act
-	//	bool same{ false };
-	//	if (b == c) {
-	//		same = true;
-	//	}
-	//	else {
-	//		same = false;
-	//	}
+	SECTION("Attempt to see if object b is less than c")
+	{
+		// act
+		b.deposit(700);
+		c.deposit(300);
+		bool same{ false };
+		if (b < c) {
+			same = true;
+		}
+		else {
+			same = false;
+		}
 
-	//	// assert overdraft unchanged
-	//	REQUIRE(same == true);
-	//}
+		// assert b is not less than c
+		REQUIRE(same == false);
+	}
 
 }
