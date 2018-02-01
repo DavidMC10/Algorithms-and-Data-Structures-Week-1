@@ -73,5 +73,11 @@ bool Account::operator==(const Account& right) const {
 // Overload the less than operator
 bool Account::operator<(const Account& right) const {
 
-	return balance < right.balance;
+	if (overdraft > right.overdraft) {
+		return true;
+	} else if (balance < right.balance) {
+		return true;
+	}
+
+	return false;
 }

@@ -37,7 +37,7 @@ public:
 
 	bool operator==(const Account& right) const;
 
-	bool operator<(const Account & right) const;
+	bool operator<(const Account& right) const;
 
 	// Private data member declarations
 private:
